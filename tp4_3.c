@@ -18,6 +18,7 @@ typedef struct Cliente {
     Producto *Productos;
 } Cliente;
 
+Cliente crearCliente();
 void insertaClientes(Cliente * clientes, int cantidadClientes);
 
 int main() {
@@ -31,11 +32,8 @@ int main() {
         scanf("%d", &cantidadClientes);
     }
 
-
-
-
-
-
+    insertaClientes(clientes, cantidadClientes);
+    
     return 0;
 }
 
@@ -44,14 +42,13 @@ void insertaClientes(Cliente * clientes, int cantidadClientes) {
     for(i = 0; i < cantidadClientes; i++) {
         clientes[i] = crearCliente();
     }
-
-    for(i = 0; i < cantidadClientes; i++) {
-        
-    }
 }
 
 Cliente crearCliente() {
     Cliente nuevoCliente;
-    printf("Ingrese los siguientes datos: ");
-    scanf("Id del cliente: %d", nuevoCliente.ClienteID);
+    printf("Ingrese los siguientes datos \n");
+    printf("Id del cliente: \n");
+    scanf("%d", nuevoCliente.ClienteID);
+    printf("%d", nuevoCliente.ClienteID);
+    return nuevoCliente;
 }
