@@ -57,6 +57,7 @@ void insertaClientes(Cliente *clientes, int cantidadClientes) {
 
         //Setea Productos
         int j;
+        clientes[i].Productos = (Producto * ) malloc(sizeof(Producto) * clientes[i].CantidadProductosAPedir);
         for(j = 0; j < clientes[i].CantidadProductosAPedir; j++) {
             clientes[i].Productos[j].Cantidad = 1 + rand() % 10;
             clientes[i].Productos[j].PrecioUnitario = 1 + rand() % 100;
@@ -72,13 +73,21 @@ void insertaClientes(Cliente *clientes, int cantidadClientes) {
     printf("\n");
 
     for(i = 0; i < cantidadClientes; i++) {
-        printf("%d\n", clientes[i].ClienteID);
-        printf("%s\n", clientes[i].NombreCliente);
-        printf("%s\n", clientes[i].CantidadProductosAPedir);
-        
+        printf("Id: %d\n", clientes[i].ClienteID);
+        printf("Nombre: %s\n", clientes[i].NombreCliente);
+        printf("Cantidad de productos: %d\n", clientes[i].CantidadProductosAPedir);
+
+        printf("Productos--\n");
+        printf("\t Cantidad \t ID Producto \t Tipo \t Precio/u");
         int j;
         for(j = 0; j < clientes[i].CantidadProductosAPedir; j++) {
-            printf("%s\n", clientes[i].Productos[j].TipoProducto);
+            printf("\t %d \t %d \t %s \t %d");
+            printf("%s\n",
+                clientes[i].Productos[j].TipoProducto,
+                clientes[i].Productos[j].ProductoID,
+                clientes[i].Productos[j].TipoProducto,
+                clientes[i].Productos[j].PrecioUnitario
+            );
         }
     }
 }
