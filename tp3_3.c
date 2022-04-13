@@ -6,16 +6,14 @@
 
 char *TiposProductos[] = {"Galletas", "Snack", "Cigarrillos", "Caramelos", "Bebidas"};
 
-typedef struct Producto
-{
+typedef struct Producto {
     int ProductoID;
     int Cantidad;
     char *TipoProducto;
     float PrecioUnitario;
 } Producto;
 
-typedef struct Cliente
-{
+typedef struct Cliente {
     int ClienteID;
     char *NombreCliente;
     int CantidadProductosAPedir;
@@ -43,23 +41,45 @@ int main() {
 
 void insertaClientes(Cliente *clientes, int cantidadClientes) {
     int i;
-    char *BuffNombre; //
+    char *BuffNombreCliente, *BuffNombreProducto;
     fflush(stdin);
 
+    //Setea clienteId, cantidadProductosAPedir y NombreCliente
     printf("Ingrese los nombres:\n");
     for(i = 0; i < cantidadClientes; i++) {
-        BuffNombre = (char *) malloc(100 * sizeof(char));
-        clientes[i].ClienteID = 1 + rand() % 100;
+        clientes[i].ClienteID = 1 + rand() % cantidadClientes;
         clientes[i].CantidadProductosAPedir = 1 + rand() % PRODUCTOS;
 
-        gets(BuffNombre);
-        clientes[i].NombreCliente = (char *)malloc((strlen(BuffNombre) + 1) * sizeof(char));
-        strcpy(clientes[i].NombreCliente, BuffNombre);
+        BuffNombreCliente = (char *) malloc(100 * sizeof(char));
+        gets(BuffNombreCliente);
+        clientes[i].NombreCliente = (char *)malloc((strlen(BuffNombreCliente) + 1) * sizeof(char));
+        strcpy(clientes[i].NombreCliente, BuffNombreCliente);
+
+        //Setea Productos
+        int j;
+        for(j = 0; j < clientes[i].CantidadProductosAPedir; j++) {
+            clientes[i].Productos[j].Cantidad = 1 + rand() % 10;
+            clientes[i].Productos[j].PrecioUnitario = 1 + rand() % 100;
+            clientes[i].Productos[j].ProductoID = 1 + rand() % PRODUCTOS;
+
+            BuffNombreProducto = (char *) malloc(100 * sizeof(char));
+            strcpy(BuffNombreProducto, TiposProductos[rand() % 5]);
+            clientes[i].Productos[j].TipoProducto = (char *)malloc((strlen(BuffNombreProducto) + 1) * sizeof(char));
+            strcpy(clientes[i].Productos[j].TipoProducto, BuffNombreProducto);
+        }
     }
+
+    printf("\n");
 
     for(i = 0; i < cantidadClientes; i++) {
         printf("%d\n", clientes[i].ClienteID);
         printf("%s\n", clientes[i].NombreCliente);
+        printf("%s\n", clientes[i].CantidadProductosAPedir);
+        
+        int j;
+        for(j = 0; j < clientes[i].CantidadProductosAPedir; j++) {
+            printf("%s\n", clientes[i].Productos[j].TipoProducto);
+        }
     }
 }
 
