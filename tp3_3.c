@@ -59,8 +59,8 @@ void insertaClientes(Cliente *clientes, int cantidadClientes) {
         int j;
         clientes[i].Productos = (Producto * ) malloc(sizeof(Producto) * clientes[i].CantidadProductosAPedir);
         for(j = 0; j < clientes[i].CantidadProductosAPedir; j++) {
-            clientes[i].Productos[j].Cantidad = 1 + rand() % 10;
-            clientes[i].Productos[j].PrecioUnitario = 1 + rand() % 100;
+            clientes[i].Productos[j].Cantidad = 1 + rand() % 100;
+            clientes[i].Productos[j].PrecioUnitario = ((float)rand()/(float)(100));
             clientes[i].Productos[j].ProductoID = 1 + rand() % PRODUCTOS;
 
             BuffNombreProducto = (char *) malloc(100 * sizeof(char));
@@ -78,11 +78,10 @@ void insertaClientes(Cliente *clientes, int cantidadClientes) {
         printf("Cantidad de productos: %d\n", clientes[i].CantidadProductosAPedir);
 
         printf("Productos--\n");
-        printf("\t Cantidad \t ID Producto \t Tipo \t Precio/u");
+        printf("\t Cantidad \t ID Producto \t Tipo \t\t Precio/u\n");
         int j;
         for(j = 0; j < clientes[i].CantidadProductosAPedir; j++) {
-            printf("\t %d \t %d \t %s \t %d");
-            printf("%s\n",
+            printf("\t %d \t %d \t\t %s \t %d\n",
                 clientes[i].Productos[j].TipoProducto,
                 clientes[i].Productos[j].ProductoID,
                 clientes[i].Productos[j].TipoProducto,
